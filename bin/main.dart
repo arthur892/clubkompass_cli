@@ -21,6 +21,8 @@ void main(List<String> arguments) {
       if (accounts[inputLogin] == inputPassword) {
         print("Eingeloggt Willkommen $inputLogin");
         inputPassword = "";
+      } else {
+        print("Account Name oder Passwort falsch bitte kontrollieren");
       }
     }
     //Registrieren

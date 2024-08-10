@@ -12,7 +12,7 @@ String getUserMenuSelection([String Value = "Eingabe: "]) {
 }
 
 bool checkUserpasswort(String password, [int minLength = 6]) {
-  //Controll if userpasswort has: uppercase, digits, Lowercase, SpecialCharacters, minLength
+  //Control if userpasswort has: uppercase, digits, Lowercase, SpecialCharacters, minLength
   if (password == null || password.isEmpty) {
     return false;
   }
@@ -32,6 +32,7 @@ bool checkUserpasswort(String password, [int minLength = 6]) {
 }
 
 bool checkUsername(String username, [int minLength = 4]) {
+  //Control if username contains only letters from a-z and A-Z
   if (username == null || username.isEmpty) {
     return false;
   }
