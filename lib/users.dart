@@ -1,6 +1,6 @@
 Map<String, String> accounts = {
-  "Benutzer1234": "1234",
-  "Anton": "Passwort",
+  "Benutzer1234": "Passwort",
+  "Anton": "1234",
   "Simone": "Simone",
   "Hans": "MeinPasswort",
   "Raphael": "#8%r6K9Hn1KA"
