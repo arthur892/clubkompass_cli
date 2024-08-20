@@ -1,4 +1,3 @@
-import 'package:args/args.dart';
 import 'package:clubkompass/users.dart';
 import 'package:clubkompass/helper_functions.dart';
 
@@ -6,52 +5,76 @@ const String version = '0.0.1';
 
 void main(List<String> arguments) {
   final bool isProgramRunning = true;
+
+/*
+    printLabel("green", "green");
+    printLabel("yellow", "yellow");
+    printLabel("blue", "blue");
+    printLabel("magenta", "magenta");
+    printLabel("cyan", "cyan");
+    printLabel("white", "white");
+*/
+
+  printLabel("");
+  printLabel("--------------------------", "cyan");
+  printLabel("Willkommen bei Clubkompass", "cyan");
+  printLabel("--------------------------", "cyan");
+  printLabel("");
+
   while (isProgramRunning) {
-    print("Welche Aktion möchtest du machen? (Mit \"Enter\" bestätigen)");
-    print("(E)inloggen" "(R)egistrieren");
-    String userMenuSelection = getUserMenuSelection();
+    String userMenuSelection;
     String inputLogin;
     String inputPassword;
+    bool tempBool = true;
+
+    printLabel("Welche Aktion möchtest du machen? (Mit \"Enter\" bestätigen)",
+        "yellow");
+    printLabel("(E)inloggen" "(R)egistrieren");
+
+    userMenuSelection = getUserInput();
 
     //Einloggen
     if (userMenuSelection == "E" || userMenuSelection == "e") {
-      inputLogin = getUserMenuSelection("Username eingeben: ");
-      inputPassword = getUserMenuSelection("Passwort eingeben: ");
+      inputLogin = getUserInput("Username eingeben: ");
+      inputPassword = getUserInput("Passwort eingeben: ");
 
       if (accounts[inputLogin] == inputPassword) {
-        print("Eingeloggt Willkommen $inputLogin");
+        printLabel("Eingeloggt Willkommen $inputLogin", "cyan");
         inputPassword = "";
       } else {
-        print("Account Name oder Passwort falsch bitte kontrollieren");
+        printLabel(
+            "Account Name oder Passwort falsch bitte kontrollieren", "red");
       }
     }
     //Registrieren
     else if (userMenuSelection == "R" || userMenuSelection == "r") {
-      inputLogin = getUserMenuSelection("Username eingeben: ");
-      bool tempBool = true;
+      inputLogin = getUserInput("Username eingeben: ");
 
       while (!checkUsername(inputLogin) || accounts.containsKey(inputLogin)) {
         if (!checkUsername(inputLogin) && tempBool) {
-          print(
-              "Nutzername darf nur Buchstaben (a-z, A-Z) und mindestens 4 Zeichen enthalten, erneut eingeben: ");
+          printLabel(
+              "Nutzername darf nur Buchstaben (a-z, A-Z) und mindestens 4 Zeichen enthalten, erneut eingeben: ",
+              "red");
           tempBool = false;
         } else if (accounts.containsKey(inputLogin)) {
-          print("Benutzername bereits vergeben, erneut eingeben");
+          printLabel(
+              "Benutzername bereits vergeben, erneut eingeben", "yellow");
         }
-        inputLogin = getUserMenuSelection();
+        inputLogin = getUserInput();
       }
 
-      inputPassword = getUserMenuSelection("Passwort eingeben: ");
+      inputPassword = getUserInput("Passwort eingeben: ");
       tempBool = true;
       while (!checkUserpasswort(inputPassword)) {
         if (tempBool) {
-          print(
-              "Passwort muss Großschreibung, Zahlen, Sonderzeichen und mindestes 6 Zeichen enthalten: ");
+          printLabel(
+              "Passwort muss Großschreibung, Zahlen, Sonderzeichen und mindestes 6 Zeichen enthalten: ",
+              "red");
           tempBool = false;
         }
-        inputPassword = getUserMenuSelection("Passwort erneut eingeben: ");
+        inputPassword = getUserInput("Passwort erneut eingeben: ");
       }
-      print("Erfolgreich registriert");
+      printLabel("Erfolgreich registriert", "green");
       accounts[inputLogin] = inputPassword;
     }
   }

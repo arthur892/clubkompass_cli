@@ -2,13 +2,38 @@ import 'dart:io';
 
 /// Shows a small text and waits for user input.
 /// To send user input, Enter should be pressed.
-String getUserMenuSelection([String Value = "Eingabe: "]) {
-  String selection = "";
+final Map<String, String> colorPicker = {
+  "black": "90",
+  "red": "91",
+  "green": "92",
+  "yellow": "93",
+  "blue": "94",
+  "magenta": "95",
+  "cyan": "96",
+  "white": "97",
+};
 
-  stdout.write("$Value");
-  selection = stdin.readLineSync() ?? "";
+String getUserInput([String text = "Eingabe: ", String color = "black"]) {
+  //"black": "30",  "red": "31",  "green": "32",  "yellow": "33",  "blue": "34",  "magenta": "35",  "cyan": "36",  "white": "37",
+  String selection = "";
+  if (colorPicker[color] != null) {
+    stdout.write("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
+    selection = stdin.readLineSync() ?? "";
+  } else {
+    print("ColorPicker is null");
+  }
 
   return selection;
+}
+
+void printLabel(String text, [String color = "black"]) {
+  //"black": "30",  "red": "31",  "green": "32",  "yellow": "33",  "blue": "34",  "magenta": "35",  "cyan": "36",  "white": "37",
+
+  if (colorPicker[color] != null) {
+    print("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
+  } else {
+    print("ColorPicker is null");
+  }
 }
 
 bool checkUserpasswort(String password, [int minLength = 6]) {
