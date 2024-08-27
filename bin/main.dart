@@ -61,7 +61,7 @@ void main(List<String> arguments) {
 
       inputPassword = getUserInput("Passwort eingeben: ");
       tempBool = true;
-      while (!checkUserpasswort(inputPassword)) {
+      while (!checkUserpassword(inputPassword)) {
         if (tempBool) {
           printLabel(
               "Passwort muss Großschreibung, Zahlen, Sonderzeichen und mindestes 6 Zeichen enthalten: ",

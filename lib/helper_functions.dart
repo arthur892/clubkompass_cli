@@ -39,24 +39,28 @@ final Map<color, String> colorPicker = {
 
 String getUserInput([String text = "Eingabe: ", var color = color.black]) {
   //Get the input from the user
-  String selection = "";
-  if (colorPicker[color] != null) {
-    stdout.write("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
-    selection = stdin.readLineSync() ?? "";
-  } else {
-    print("ColorPicker is null");
-  }
 
+  //Check if color is valid
+  if (colorPicker[color] == null) {
+    print("ColorPicker is null");
+    return "";
+  }
+  //Get the userinput
+  String selection = "";
+
+  stdout.write("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
+  selection = stdin.readLineSync() ?? "";
   return selection;
 }
 
 void printLabel(String text, [var color = color.black]) {
   //Print a Label with a color
-  if (colorPicker[color] != null) {
-    print("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
-  } else {
+
+  if (colorPicker[color] == null) {
     print("ColorPicker is null");
+    return;
   }
+  print("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
 }
 
 void printHeadline(String text, [var color = color.black]) {
@@ -82,7 +86,7 @@ void printHeadline(String text, [var color = color.black]) {
   print("");
 }
 
-bool checkUserpasswort(String password, [int minLength = 6]) {
+bool checkUserpassword(String password, [int minLength = 6]) {
   //Control if userpasswort has: uppercase, digits, Lowercase, SpecialCharacters, minLength
   if (password == null || password.isEmpty) {
     return false;
