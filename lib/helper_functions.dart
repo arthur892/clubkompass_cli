@@ -2,6 +2,8 @@ import 'dart:io';
 
 /// Shows a small text and waits for user input.
 /// To send user input, Enter should be pressed.
+
+/*
 final Map<String, String> colorPicker = {
   "black": "90",
   "red": "91",
@@ -11,10 +13,32 @@ final Map<String, String> colorPicker = {
   "magenta": "95",
   "cyan": "96",
   "white": "97",
+};*/
+
+enum color {
+  black,
+  red,
+  green,
+  yellow,
+  blue,
+  magenta,
+  cyan,
+  white,
+}
+
+final Map<color, String> colorPicker = {
+  color.black: "90",
+  color.red: "91",
+  color.green: "92",
+  color.yellow: "93",
+  color.blue: "94",
+  color.magenta: "95",
+  color.cyan: "96",
+  color.white: "97",
 };
 
-String getUserInput([String text = "Eingabe: ", String color = "black"]) {
-  //"black": "30",  "red": "31",  "green": "32",  "yellow": "33",  "blue": "34",  "magenta": "35",  "cyan": "36",  "white": "37",
+String getUserInput([String text = "Eingabe: ", var color = color.black]) {
+  //Get the input from the user
   String selection = "";
   if (colorPicker[color] != null) {
     stdout.write("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
@@ -26,14 +50,36 @@ String getUserInput([String text = "Eingabe: ", String color = "black"]) {
   return selection;
 }
 
-void printLabel(String text, [String color = "black"]) {
-  //"black": "30",  "red": "31",  "green": "32",  "yellow": "33",  "blue": "34",  "magenta": "35",  "cyan": "36",  "white": "37",
-
+void printLabel(String text, [var color = color.black]) {
+  //Print a Label with a color
   if (colorPicker[color] != null) {
     print("\x1B[" + colorPicker[color]! + "m" + "$text" + "\x1B[0m");
   } else {
     print("ColorPicker is null");
   }
+}
+
+void printHeadline(String text, [var color = color.black]) {
+  //print a headline with a color
+
+  //Check if color is valid
+  if (colorPicker[color] == null) {
+    print("ColorPicker is null");
+    return;
+  }
+
+  String dash = "";
+  for (int i = 0; i < text.length + 2; i++) {
+    dash += "-";
+  }
+  //Add Color to String
+  dash = "\x1B[" + colorPicker[color]! + "m" + "+$dash+" + "\x1B[0m";
+
+  print("");
+  print(dash);
+  print("\x1B[" + colorPicker[color]! + "m" + "| $text |" + "\x1B[0m");
+  print(dash);
+  print("");
 }
 
 bool checkUserpasswort(String password, [int minLength = 6]) {

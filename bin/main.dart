@@ -15,11 +15,7 @@ void main(List<String> arguments) {
     printLabel("white", "white");
 */
 
-  printLabel("");
-  printLabel("--------------------------", "cyan");
-  printLabel("Willkommen bei Clubkompass", "cyan");
-  printLabel("--------------------------", "cyan");
-  printLabel("");
+  printHeadline("Willkommen bei Club Kompass", color.cyan);
 
   while (isProgramRunning) {
     String userMenuSelection;
@@ -28,7 +24,7 @@ void main(List<String> arguments) {
     bool tempBool = true;
 
     printLabel("Welche Aktion möchtest du machen? (Mit \"Enter\" bestätigen)",
-        "yellow");
+        color.yellow);
     printLabel("(E)inloggen" "(R)egistrieren");
 
     userMenuSelection = getUserInput();
@@ -39,11 +35,11 @@ void main(List<String> arguments) {
       inputPassword = getUserInput("Passwort eingeben: ");
 
       if (accounts[inputLogin] == inputPassword) {
-        printLabel("Eingeloggt Willkommen $inputLogin", "cyan");
+        printLabel("Eingeloggt Willkommen $inputLogin", color.cyan);
         inputPassword = "";
       } else {
-        printLabel(
-            "Account Name oder Passwort falsch bitte kontrollieren", "red");
+        printLabel("Account Name oder Passwort falsch bitte kontrollieren",
+            color.cyan);
       }
     }
     //Registrieren
@@ -54,11 +50,11 @@ void main(List<String> arguments) {
         if (!checkUsername(inputLogin) && tempBool) {
           printLabel(
               "Nutzername darf nur Buchstaben (a-z, A-Z) und mindestens 4 Zeichen enthalten, erneut eingeben: ",
-              "red");
+              color.red);
           tempBool = false;
         } else if (accounts.containsKey(inputLogin)) {
           printLabel(
-              "Benutzername bereits vergeben, erneut eingeben", "yellow");
+              "Benutzername bereits vergeben, erneut eingeben", color.yellow);
         }
         inputLogin = getUserInput();
       }
@@ -69,12 +65,12 @@ void main(List<String> arguments) {
         if (tempBool) {
           printLabel(
               "Passwort muss Großschreibung, Zahlen, Sonderzeichen und mindestes 6 Zeichen enthalten: ",
-              "red");
+              color.red);
           tempBool = false;
         }
         inputPassword = getUserInput("Passwort erneut eingeben: ");
       }
-      printLabel("Erfolgreich registriert", "green");
+      printLabel("Erfolgreich registriert", color.green);
       accounts[inputLogin] = inputPassword;
     }
   }

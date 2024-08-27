@@ -12,7 +12,8 @@ Club Kompass streamlines club management and communication, all in one place!
 ![Launchscreen](https://github.com/arthur892/clubkompass/blob/main/pictures/Launch%20Screen.png?raw=true)
 
 
-## Pictures
+
+## Design Ideas
 
 
 
@@ -32,7 +33,7 @@ Club Kompass streamlines club management and communication, all in one place!
 
 
 
-Made with ♥️ in Germany
+Made with ❤️ in Germany
 
 
 
