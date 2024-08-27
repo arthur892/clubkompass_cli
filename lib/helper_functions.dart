@@ -66,7 +66,7 @@ void printHeadline(String text, [var color = color.black]) {
 
 bool checkUserpassword(String password, [int minLength = 6]) {
   //Control if userpasswort has: uppercase, digits, Lowercase, SpecialCharacters, minLength
-  if (password == null || password.isEmpty) {
+  if (password.isEmpty) {
     return false;
   }
 
@@ -86,7 +86,7 @@ bool checkUserpassword(String password, [int minLength = 6]) {
 
 bool checkUsername(String username, [int minLength = 4]) {
   //Control if username contains only letters from a-z and A-Z
-  if (username == null || username.isEmpty) {
+  if (username.isEmpty) {
     return false;
   }
   bool hasAlphabets = username.contains(new RegExp(r'[a-zA-Z]'));

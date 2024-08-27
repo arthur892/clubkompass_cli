@@ -126,7 +126,7 @@ void main(List<String> arguments) {
               if (i >= 0)
                 myBlog.posts[i].printAll();
               else
-                i = -1;
+                i = 0;
             } else if (userMenuSelection.toLowerCase() == "z") break;
           }
         }
