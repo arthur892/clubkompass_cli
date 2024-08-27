@@ -1,5 +1,5 @@
-import 'package:clubkompass/users.dart';
-import 'package:clubkompass/helper_functions.dart';
+import '../lib/helper_functions.dart';
+import '../lib/users.dart';
 
 const String version = '0.0.1';
 
