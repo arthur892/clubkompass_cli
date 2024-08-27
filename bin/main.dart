@@ -38,8 +38,8 @@ void main(List<String> arguments) {
         printLabel("Eingeloggt Willkommen $inputLogin", color.cyan);
         inputPassword = "";
       } else {
-        printLabel("Account Name oder Passwort falsch bitte kontrollieren",
-            color.cyan);
+        printLabel(
+            "Account Name oder Passwort falsch bitte kontrollieren", color.red);
       }
     }
     //Registrieren
