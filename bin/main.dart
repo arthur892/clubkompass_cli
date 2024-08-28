@@ -85,20 +85,20 @@ void main(List<String> arguments) {
       }
       printHeadline("Blog", color.magenta);
       printLabel(
-          "Anzahl ungelesene Einträge: ${myBlog.UnseenPosts()}", color.green);
+          "Anzahl ungelesene Einträge: ${myBlog.unseenPosts()}", color.green);
       printLabel("Welche Aktion möchtest du machen? (Mit \"Enter\" bestätigen)",
           color.yellow);
 
       while (true) {
         //Auswahl Blog
-        printLabel("(N)eusten Blog Eintrag anzeigen (${myBlog.UnseenPosts()})" +
+        printLabel("(N)eusten Blog Eintrag anzeigen (${myBlog.unseenPosts()})" +
             " | (A)lte Beiträge anzeigen" +
             " | (Z)urück zum Hauptmenü");
         userMenuSelection = getUserInput();
 
         //Neuste Blogeinträge anzeigen
         if (userMenuSelection.toLowerCase() == "n") {
-          if (myBlog.UnseenPosts() > 0)
+          if (myBlog.unseenPosts() > 0)
             myBlog.printUnseenPost();
           else {
             printLabel("Keine weiteren Einträge vorhanden!", color.yellow);

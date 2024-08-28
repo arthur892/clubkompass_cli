@@ -349,7 +349,7 @@ class Blog {
     }
   }
 
-  int UnseenPosts() {
+  int unseenPosts() {
     int i = 0;
     for (var post in posts) {
       if (!post.readed) {
