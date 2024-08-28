@@ -15,6 +15,7 @@ Club Kompass streamlines club management and communication, all in one place!
 ## actual State
 
 ![actual State](https://github.com/arthur892/clubkompass/blob/main/pictures/Konsole.png)
+![Blog View](https://github.com/arthur892/clubkompass/blob/main/pictures/BlogView.png)
 
 
 ## Upcoming Features
