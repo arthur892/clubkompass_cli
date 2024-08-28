@@ -91,44 +91,53 @@ void main(List<String> arguments) {
 
       while (true) {
         //Auswahl Blog
-        printLabel("(N)eusten Blog Eintrag anzeigen (${myBlog.unseenPosts()})" +
-            " | (A)lte Beiträge anzeigen" +
-            " | (Z)urück zum Hauptmenü");
-        userMenuSelection = getUserInput();
+        printLabel(
+            "(N)eusten Blog Eintrag anzeigen (${myBlog.unseenPosts()}) | (A)lte Beiträge anzeigen | (Z)urück zum Hauptmenü");
+        userMenuSelection = getUserInput().toLowerCase();
 
-        //Neuste Blogeinträge anzeigen
-        if (userMenuSelection.toLowerCase() == "n") {
-          if (myBlog.unseenPosts() > 0)
-            myBlog.printUnseenPost();
-          else {
-            printLabel("Keine weiteren Einträge vorhanden!", color.yellow);
-          }
-          //Blogansicht verlassen
-        } else if (userMenuSelection.toLowerCase() == "z")
-          break;
+        //Blogansicht verlassen
+        if (userMenuSelection == "z") break;
 
-        //Alte Einträge anschauen
-        else if (userMenuSelection.toLowerCase() == "a") {
-          int i = -1;
-          while (true) {
-            printLabel(
-                "(N)ächsten Post anzeigen | (V)orherigen Post anzeigen | (Z)urück zum Blog",
-                color.yellow);
-            userMenuSelection = getUserInput();
-            if (userMenuSelection.toLowerCase() == "n") {
-              i++;
-              if (i < myBlog.posts.length)
-                myBlog.posts[i].printAll();
-              else
-                i = myBlog.posts.length - 1;
-            } else if (userMenuSelection.toLowerCase() == "v") {
-              i--;
-              if (i >= 0)
-                myBlog.posts[i].printAll();
-              else
-                i = 0;
-            } else if (userMenuSelection.toLowerCase() == "z") break;
-          }
+        switch (userMenuSelection) {
+          case "n":
+            //Neuste Blogeinträge anzeigen
+            if (myBlog.unseenPosts() > 0)
+              myBlog.printUnseenPost();
+            else {
+              printLabel("Keine weiteren Einträge vorhanden!", color.yellow);
+            }
+
+          case "a":
+            //Alte Einträge anschauen
+            int i = -1;
+            while (true) {
+              printLabel(
+                  "(N)ächsten Post anzeigen | (V)orherigen Post anzeigen | (Z)urück zum Blog",
+                  color.yellow);
+              userMenuSelection = getUserInput().toLowerCase();
+
+              //Alte Beiträge verlassen
+              if (userMenuSelection == "z") break;
+
+              switch (userMenuSelection) {
+                case "n":
+                  //Nächsten Blog Eintrag anzeigen
+                  i++;
+                  if (i < myBlog.posts.length) {
+                    myBlog.posts[i].printAll();
+                  } else {
+                    i = myBlog.posts.length - 1;
+                  }
+                //Vorherigen Blog Eintrag anzeigen
+                case "v":
+                  i--;
+                  if (i >= 0) {
+                    myBlog.posts[i].printAll();
+                  } else {
+                    i = 0;
+                  }
+              }
+            }
         }
       }
     }
