@@ -4,18 +4,6 @@ import 'colorPicker.dart';
 /// Shows a small text and waits for user input.
 /// To send user input, Enter should be pressed.
 
-/*
-final Map<String, String> colorPicker = {
-  "black": "90",
-  "red": "91",
-  "green": "92",
-  "yellow": "93",
-  "blue": "94",
-  "magenta": "95",
-  "cyan": "96",
-  "white": "97",
-};*/
-
 String getUserInput([String text = "Eingabe: ", var color = color.black]) {
   //Get the input from the user
 
@@ -85,7 +73,7 @@ bool checkUserpassword(String password, [int minLength = 6]) {
 }
 
 bool checkUsername(String username, [int minLength = 4]) {
-  //Control if username contains only letters from a-z and A-Z
+  //Control if username contains only letters from a-z and A-Z and minLength
   if (username.isEmpty) {
     return false;
   }

@@ -8,15 +8,6 @@ const String version = '0.0.1';
 void main(List<String> arguments) {
   final bool isProgramRunning = true;
 
-/*
-    printLabel("green", "green");
-    printLabel("yellow", "yellow");
-    printLabel("blue", "blue");
-    printLabel("magenta", "magenta");
-    printLabel("cyan", "cyan");
-    printLabel("white", "white");
-*/
-
   printHeadline("Willkommen bei Club Kompass", color.cyan);
   String userMenuSelection;
   String inputLogin;
@@ -32,7 +23,7 @@ void main(List<String> arguments) {
 
     userMenuSelection = getUserInput();
 
-    //Einloggen
+    //Logins with password control
     if (userMenuSelection == "E" || userMenuSelection == "e") {
       inputLogin = getUserInput("Username eingeben: ");
       inputPassword = getUserInput("Passwort eingeben: ");
@@ -46,10 +37,11 @@ void main(List<String> arguments) {
             "Account Name oder Passwort falsch bitte kontrollieren", color.red);
       }
     }
-    //Registrieren
+    //register new user
     else if (userMenuSelection == "R" || userMenuSelection == "r") {
       inputLogin = getUserInput("Username eingeben: ");
 
+      //check if user already exists
       while (!checkUsername(inputLogin) || accounts.containsKey(inputLogin)) {
         if (!checkUsername(inputLogin) && tempBool) {
           printLabel(
@@ -63,6 +55,7 @@ void main(List<String> arguments) {
         inputLogin = getUserInput();
       }
 
+      //check user password for safety
       inputPassword = getUserInput("Passwort eingeben: ");
       tempBool = true;
       while (!checkUserpassword(inputPassword)) {
@@ -77,7 +70,7 @@ void main(List<String> arguments) {
       printLabel("Erfolgreich registriert", color.green);
       accounts[inputLogin] = inputPassword;
 
-      //Blog Ansicht
+      //Blog view
     } else if (userMenuSelection == "B" || userMenuSelection == "b") {
       if (!loggedIn) {
         printLabel("Nicht eingeloggt", color.red);
@@ -90,17 +83,17 @@ void main(List<String> arguments) {
           color.yellow);
 
       while (true) {
-        //Auswahl Blog
+        //Blog view undermenu
         printLabel(
             "(N)eusten Blog Eintrag anzeigen (${myBlog.unseenPosts()}) | (A)lte Beiträge anzeigen | (Z)urück zum Hauptmenü");
         userMenuSelection = getUserInput().toLowerCase();
 
-        //Blogansicht verlassen
+        //Exit blog undermenu view
         if (userMenuSelection == "z") break;
 
         switch (userMenuSelection) {
           case "n":
-            //Neuste Blogeinträge anzeigen
+            //Show unseend Blog Posts
             if (myBlog.unseenPosts() > 0)
               myBlog.printUnseenPost();
             else {
@@ -108,27 +101,27 @@ void main(List<String> arguments) {
             }
 
           case "a":
-            //Alte Einträge anschauen
-            int i = -1;
+            //Show all blog posts ---new undermenu "old Posts"
+            int i = -1; //Must be outside the while "menu" loop
             while (true) {
               printLabel(
                   "(N)ächsten Post anzeigen | (V)orherigen Post anzeigen | (Z)urück zum Blog",
                   color.yellow);
               userMenuSelection = getUserInput().toLowerCase();
 
-              //Alte Beiträge verlassen
+              //Exit undermenu "old posts" --> go to Blogview undermneu
               if (userMenuSelection == "z") break;
 
               switch (userMenuSelection) {
                 case "n":
-                  //Nächsten Blog Eintrag anzeigen
+                  //Show next Blogpost
                   i++;
                   if (i < myBlog.posts.length) {
                     myBlog.posts[i].printAll();
                   } else {
                     i = myBlog.posts.length - 1;
                   }
-                //Vorherigen Blog Eintrag anzeigen
+                //Show previous Blogpost
                 case "v":
                   i--;
                   if (i >= 0) {

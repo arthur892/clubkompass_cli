@@ -26,7 +26,7 @@ class blogPost {
   }
 
   void printPicture([var color = color.black]) {
-    //print a headline with a color
+    //print a Picture with a color
 
     //Check if color is valid
     if (colorPicker[color] == null) {
